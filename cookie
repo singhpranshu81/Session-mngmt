@@ -1,0 +1,43 @@
+package com.ss;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+public class CookieServ extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+
+    public CookieServ() {
+       
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out=response.getWriter();
+		String un= request.getParameter("txtname");
+		Cookie cookie=new Cookie("username", un);
+		cookie.setMaxAge(100);
+		response.addCookie(cookie);
+		
+		Cookie[] c=request.getCookies();
+		for(Cookie ck:c) {
+			if(ck.getName().equals("username"))
+			out.print(ck.getValue());
+		}
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
+
+}
