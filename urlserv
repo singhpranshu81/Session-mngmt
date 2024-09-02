@@ -1,0 +1,32 @@
+package com.ss;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+public class URLServ extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public URLServ() {
+       
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out =response.getWriter();
+		String username=request.getParameter("txtname");
+		response.sendRedirect("NextServ?username="+username);
+	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
+
+}
